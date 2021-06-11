@@ -41,6 +41,7 @@ $ docker exec -it www_docker_symfony bash
 /var/www/project# php bin/console doctrine:database:create
 Created database `db_name` for connection named default
 /var/www/project# php bin/console make:migration
+/var/www/project# php bin/console doctrine:migrations:migrate
 ```
 
 or without docker:
