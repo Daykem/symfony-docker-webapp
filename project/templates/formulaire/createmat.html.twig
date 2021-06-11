@@ -1,0 +1,27 @@
+{% include('formulaire/template.html.twig') %}
+
+<body>
+    {% include('navbar/navbar.html.twig') %}
+
+    <div class="login-box">
+    <h2>Créer un nouveau materiel</h2>
+    <form action="createmat" method="POST">
+        <div class="user-box">
+            <input id="name" type="text" name="name" required="">
+            <label for"name">Nom du matériel</label>
+        </div>
+        <div class="user-box">
+            <input id="cost" type="number" name="cost" required="" min="0">
+            <label for"cost">Prix</label>
+        </div>
+        {# <div class="user-box">
+            <input type="checkbox" id="state" name="state">
+            <label for="state">Vendu</label>
+        </div> #}
+        <div class="send-box">
+            <input type="submit" value="Enregistrer le nouveau materiel">
+        </div>
+
+    </form>
+    </div>
+</body>

@@ -1,0 +1,23 @@
+{% include('formulaire/template.html.twig') %}
+
+    <body>
+    {% include('navbar/navbar.html.twig') %}
+        <div class="login-box">
+            <h2>Liste des enregistrements</h2>
+            <div class="user-box">
+            {% for lien in lien %}
+                {% for client in client %}
+                    {% if (client.getID() == lien.getClientId) %}
+                        {% for materiel in materiel %}
+                            {% if (materiel.getID() == lien.getMaterielId()) %}
+                                <div class="col-6-gauche">{{ client.getFirstname() }}</div> 
+                                <div class="col-6-droite"> {{ materiel.getName() }} : {{ materiel.getCost() }} </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

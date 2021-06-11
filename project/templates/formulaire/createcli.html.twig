@@ -1,0 +1,23 @@
+{% include('formulaire/template.html.twig') %}
+
+<body>
+    {% include('navbar/navbar.html.twig') %}
+
+    <div class="login-box">
+    <h2>Créer un nouveau clients</h2>
+    <form action="createcli" method="POST">
+        <div class="user-box">
+            <input id="firstname" type="text" name="firstname" required="">
+            <label for"firstname">Prénom</label>
+        </div>
+        <div class="user-box">
+            <input id="lastname" type="text" name="lastname" required="">
+            <label for"lastname">Nom</label>
+        </div>
+        <div class="send-box">
+            <input type="submit" value="Enregistrer le nouveau client">
+        </div>
+
+    </form>
+    </div>
+</body>

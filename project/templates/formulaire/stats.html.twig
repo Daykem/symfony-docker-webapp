@@ -1,0 +1,71 @@
+{% include('formulaire/template.html.twig') %}
+
+<body>
+{% include('navbar/navbar.html.twig') %}
+
+    <div class="login-box">
+        <section class="section">
+            <h2>Statistiques clients</h2>
+            <div class="user-box">
+            <table>
+                <thead>
+                    <th >Clients</th>
+                    <th >Nombre de Materiel</th>
+                    <th >Totaux vendu</th>
+                </thead>
+                <tbody>
+                {% set max_number_materiel = 0 %}
+                {% set max_total_cost = 0 %}
+                {% set max_firstname = 0 %}
+                {% set max_lastname = 0 %}
+                {% for client in client %}
+                    {% set number_materiel = 0 %}
+                    {% set total_cost = 0 %}
+                    {% for lien in lien %}
+                        {% if (client.getID() == lien.getClientId) %}
+                            {% for materiel in materiel %}
+                                {% if (materiel.getID() == lien.getMaterielId()) %}
+                                    {% set number_materiel = number_materiel + 1 %}
+                                    {% set total_cost = total_cost + materiel.getCost() %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if (max_total_cost < total_cost) %}
+                        {% set max_number_materiel = number_materiel %}
+                        {% set max_total_cost = total_cost %}
+                        {% set max_firstname = client.getFirstname() %}
+                        {% set max_lastname = client.getLastname() %}
+                    {% endif %}
+                    <tr>
+                        <td>{{ client.getFirstname() }} {{ client.getLastname() }}</td>
+                        <td>{{ number_materiel }}</td>
+                        <td>{{ total_cost }}</td>
+                </tr>
+                    
+            {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="">Client le plus rentable</h2>
+            <table>
+                <thead>
+                    <th >Clients</th>
+                    <th >Nombre de Materiel</th>
+                    <th >Totaux vendu</th>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>{{ max_firstname }} {{ max_lastname }}</td>
+                    <td>{{ max_number_materiel }}</td>
+                    <td>{{ max_total_cost }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>

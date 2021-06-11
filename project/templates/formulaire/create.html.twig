@@ -1,0 +1,31 @@
+{% include('formulaire/template.html.twig') %}
+
+<body>
+    {% include('navbar/navbar.html.twig') %}
+
+    <div class="login-box">
+    <h2>Lier un materiel à un client</h2>
+    <form action="create" method="POST">
+        <div class="select mb-10">
+            <select id="client_id" type="select" name="client_id" required="">
+               <option selected disabled>Selectionnez votre client</option>
+               {% for c in client %}
+                     <option value="{{ c.id }}">{{ c.firstname }} {{ c.lastname }}</option>
+               {% endfor %}
+            </select>
+        </div>
+        <div class="select mb-10">
+            <select id="materiel_id" type="select" name="materiel_id" required="">
+               <option selected disabled>Selectionnez le materiel</option>
+               {% for m in materiel %}
+                     <option value="{{ m.id }}">{{ m.name }} {{ m.cost }}</option>
+               {% endfor %}
+            </select>
+        </div>
+        <div class="send-box mt-10">
+            <input type="submit" value="Lier le materiel au client">
+        </div>
+
+    </form>
+    </div>
+</body>
